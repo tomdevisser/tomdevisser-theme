@@ -10,7 +10,7 @@ jobs:
         with:
           name: github-actions
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: 'temporary-placeholder'
+          known_hosts: 'temp-placeholder'
       
       - name: Adding known hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts

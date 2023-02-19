@@ -1,8 +1,13 @@
 name: Deployment
 run-name: ${{ github.actor }} is deploying the theme
-on: [push]
+on:
+  push:
+    branches: [main]
+  
+  workflow_dispatch:
+
 jobs:
-  Deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Install SSH Key
@@ -10,10 +15,7 @@ jobs:
         with:
           name: github-actions
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: 'temp-placeholder'
-      
-      - name: Adding known hosts
-        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
 
       - name: Check out repository code
         uses: actions/checkout@v3

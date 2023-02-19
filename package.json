@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A theme for tomdevisser.blog",
   "scripts": {
+    "build": "wp-scripts build",
     "start": "wp-scripts start"
   },
   "repository": {

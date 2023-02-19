@@ -27,4 +27,4 @@ jobs:
         run: ls ${{ github.workspace }}
 
       - name: Deploy with rsync
-        run: scp -r ${{ github.workspace }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/wp-content/themes/tomdevisser/
+        run: rsync -avz ${{ github.workspace }}/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/wp-content/themes/tomdevisser/

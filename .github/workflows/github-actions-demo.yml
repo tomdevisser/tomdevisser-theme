@@ -8,6 +8,7 @@ jobs:
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2.5.0
         with:
+          name: github-actions
           key: ${{ secrets.SSH_PRIVATE_KEY }} 
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
 

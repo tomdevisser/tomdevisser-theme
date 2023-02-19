@@ -13,6 +13,11 @@ module.exports = {
 	entry: {
 		"toms-styles": path.resolve(__dirname, "/src/scss", "styles.scss"),
 		"toms-scripts": path.resolve(__dirname, "/src/js", "scripts.js"),
+		"example-dynamic": path.resolve(
+			__dirname,
+			"/blocks/example-dynamic",
+			"index.js"
+		),
 	},
 	output: {
 		path: path.resolve(__dirname, "build"),

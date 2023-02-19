@@ -1,0 +1,27 @@
+{
+  "name": "tomdevisser",
+  "version": "1.0.0",
+  "description": "A theme for tomdevisser.blog",
+  "scripts": {
+    "start": "wp-scripts start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasdevisser/tomdevisser.git"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "fse",
+    "gutenberg"
+  ],
+  "author": "Thomas de Visser",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomasdevisser/tomdevisser/issues"
+  },
+  "homepage": "https://github.com/thomasdevisser/tomdevisser#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^25.4.0"
+  }
+}

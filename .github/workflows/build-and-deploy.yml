@@ -1,4 +1,4 @@
-name: Deployment
+name: Build & Deploy
 run-name: ${{ github.actor }} is deploying the theme
 on:
   push:

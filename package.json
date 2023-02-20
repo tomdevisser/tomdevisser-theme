@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thomasdevisser/tomdevisser.git"
+    "url": "git+https://github.com/tomdevisser/tomdevisser-theme.git"
   },
   "keywords": [
     "wordpress",
@@ -19,9 +19,9 @@
   "author": "Thomas de Visser",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thomasdevisser/tomdevisser/issues"
+    "url": "https://github.com/tomdevisser/tomdevisser-theme/issues"
   },
-  "homepage": "https://github.com/thomasdevisser/tomdevisser#readme",
+  "homepage": "https://github.com/tomdevisser/tomdevisser-theme#readme",
   "devDependencies": {
     "@wordpress/scripts": "^25.4.0"
   }

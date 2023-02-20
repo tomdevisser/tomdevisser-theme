@@ -239,16 +239,13 @@
 					"slug": "medium"
 				},
 				{
-					"fluid": {
-						"min": "1.75rem",
-						"max": "1.875rem"
-					},
-					"size": "1.75rem",
+					"fluid": false,
+					"size": "1.25rem",
 					"slug": "large"
 				},
 				{
 					"fluid": false,
-					"size": "2.25rem",
+					"size": "1.563rem",
 					"slug": "x-large"
 				},
 				{
@@ -302,13 +299,13 @@
 			},
 			"h1": {
 				"typography": {
-					"fontSize": "3.625rem",
+					"fontSize": "3.052rem",
 					"lineHeight": "1.2"
 				}
 			},
 			"h2": {
 				"typography": {
-					"fontSize": "clamp(2.625rem, calc(2.625rem + ((1vw - 0.48rem) * 8.4135)), 3.25rem)",
+					"fontSize": "clamp(1.953rem, calc(1.953rem + ((1vw - 0.48rem) * 8.4135)), 2.441rem)",
 					"lineHeight": "1.2"
 				}
 			},
@@ -338,7 +335,7 @@
 			"heading": {
 				"typography": {
 					"fontWeight": "400",
-					"lineHeight": "1.4"
+					"lineHeight": "1.2"
 				}
 			},
 			"link": {

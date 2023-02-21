@@ -13,9 +13,14 @@ module.exports = {
 	entry: {
 		"toms-styles": path.resolve(__dirname, "/src/scss", "styles.scss"),
 		"toms-scripts": path.resolve(__dirname, "/src/js", "scripts.js"),
-		"example-dynamic": path.resolve(
+		"themejson-generator-script": path.resolve(
 			__dirname,
-			"/blocks/example-dynamic",
+			"/blocks/themejson-generator",
+			"generator.js"
+		),
+		"themejson-generator": path.resolve(
+			__dirname,
+			"/blocks/themejson-generator",
 			"index.js"
 		),
 	},

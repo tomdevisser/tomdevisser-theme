@@ -1,0 +1,33 @@
+.button {
+	border: 2px solid;
+	display: inline-block;
+	font-family: var(--wp--preset--font--family--dm-sans);
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.75;
+	padding: 0.667em 1.333em;
+	transition: 0.2s ease-in-out;
+	width: fit-content;
+
+	&.primary {
+		background-color: var(--wp--preset--color--secondary);
+		color: var(--wp--preset--color--base);
+		border-color: var(--wp--preset--color--base);
+
+		&:hover {
+			background-color: var(--wp--preset--color--primary);
+			color: var(--wp--preset--color--contrast);
+			border-color: var(--wp--preset--color--contrast);
+		}
+	}
+
+	&.secondary {
+		background-color: var(--wp--preset--color--primary);
+		color: var(--wp--preset--color--contrast);
+		border-color: var(--wp--preset--color--contrast);
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+}

@@ -1,0 +1,30 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-toms-themejson-generator {
+	padding: 2px;
+
+	.generate-theme-json-form {
+		.colors-fieldset {
+			.color-palette-container {
+				display: grid;
+				gap: 1rem;
+				grid-template-columns: repeat(3, 1fr);
+
+				.color-palette-item {
+					.group-label {
+						margin-bottom: 1rem;
+					}
+				}
+			}
+
+			.button {
+				margin-top: 1rem;
+			}
+		}
+	}
+}

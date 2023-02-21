@@ -4,7 +4,8 @@
   "description": "A theme for tomdevisser.blog",
   "scripts": {
     "build": "wp-scripts build",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,10 @@
   },
   "homepage": "https://github.com/tomdevisser/tomdevisser-theme#readme",
   "devDependencies": {
-    "@wordpress/scripts": "^25.4.0"
+    "@babel/preset-env": "^7.20.2",
+    "@wordpress/scripts": "^25.4.0",
+    "jest": "^29.4.3",
+    "jest-environment-jsdom": "^29.4.3"
   },
   "dependencies": {
     "@sentry/browser": "^7.38.0",

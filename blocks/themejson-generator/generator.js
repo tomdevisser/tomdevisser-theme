@@ -3,7 +3,7 @@ import {
 	downloadFile,
 	slugifyString,
 	createDOMElement,
-} from "./utils.js";
+} from "../../src/js/utils.js";
 
 /**
  * Append the form value to the theme.json object.

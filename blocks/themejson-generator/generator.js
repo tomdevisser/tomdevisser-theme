@@ -90,14 +90,6 @@ const handleGenerateFormSubmit = (e) => {
  * @param {number} count The number of color palette items.
  */
 const createColorPaletteItem = (count) => {
-	const paletteItemNameLabel = createDOMElement({
-		type: "label",
-		attributes: {
-			for: `color-${count + 1}-name`,
-		},
-		innerHTML: "Name",
-	});
-
 	const paletteItemNameInput = createDOMElement({
 		type: "input",
 		attributes: {
@@ -107,32 +99,37 @@ const createColorPaletteItem = (count) => {
 		},
 	});
 
-	const paletteItemHexLabel = createDOMElement({
+	const paletteItemNameLabel = createDOMElement({
 		type: "label",
 		attributes: {
-			for: `color-${count + 1}-hex`,
+			for: `color-${count + 1}-name`,
 		},
-		innerHTML: "Hex Value",
+		innerHTML: "Name",
+		children: [paletteItemNameInput],
 	});
 
 	const paletteItemHexInput = createDOMElement({
 		type: "input",
 		attributes: {
-			type: "text",
+			type: "color",
 			name: `color-${count + 1}-hex`,
 			id: `color-${count + 1}-hex`,
 		},
 	});
 
+	const paletteItemHexLabel = createDOMElement({
+		type: "label",
+		attributes: {
+			for: `color-${count + 1}-hex`,
+		},
+		innerHTML: "Color",
+		children: [paletteItemHexInput],
+	});
+
 	const paletteItem = createDOMElement({
 		type: "div",
 		classes: ["color-palette-item"],
-		children: [
-			paletteItemNameLabel,
-			paletteItemNameInput,
-			paletteItemHexLabel,
-			paletteItemHexInput,
-		],
+		children: [paletteItemNameLabel, paletteItemHexLabel],
 	});
 
 	return paletteItem;

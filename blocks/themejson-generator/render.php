@@ -17,10 +17,10 @@
       <legend>Colors</legend>
       <div id="color-palette-container" class="color-palette-container">
         <div class="color-palette-item">
-          <label for="color-1-name">Name</label>
-          <input id="color-1-name" name="color-1-name" type="text">
-          <label for="color-1-hex">Hex Value</label>
-          <input id="color-1-hex" name="color-1-hex" type="text">
+          <label for="color-1-name">Name
+          <input id="color-1-name" name="color-1-name" type="text"></label>
+          <label for="color-1-hex">Color
+          <input id="color-1-hex" name="color-1-hex" type="color"></label>
         </div>
       </div>
       <button id="add-color-button" class="button secondary">Add color</button>

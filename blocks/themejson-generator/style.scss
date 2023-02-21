@@ -11,11 +11,17 @@
 	.generate-theme-json-form {
 		.colors-fieldset {
 			.color-palette-container {
-				display: grid;
-				gap: 1rem;
-				grid-template-columns: repeat(3, 1fr);
-
 				.color-palette-item {
+					display: flex;
+					gap: 1rem;
+
+					label {
+						display: flex;
+						flex-direction: column;
+						gap: 0.5rem;
+						align-items: flex-start;
+					}
+
 					.group-label {
 						margin-bottom: 1rem;
 					}

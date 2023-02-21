@@ -61,6 +61,12 @@ form {
 					opacity: 1;
 				}
 			}
+
+			&[type="color"] {
+				padding: 0.1rem 0.2rem;
+				height: 2.375rem;
+				width: 2.375rem;
+			}
 		}
 	}
 }

@@ -16,7 +16,7 @@ module.exports = {
 		"themejson-generator-script": path.resolve(
 			__dirname,
 			"/blocks/themejson-generator",
-			"generator.js"
+			"script.js"
 		),
 		"themejson-generator": path.resolve(
 			__dirname,

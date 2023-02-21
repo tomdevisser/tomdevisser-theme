@@ -1,106 +1,141 @@
-import { generateThemeJson, downloadThemeJson } from "./utils.js";
+import {
+	generateJsonFile,
+	downloadFile,
+	slugifyString,
+	createDOMElement,
+} from "./utils.js";
 
-// Handle the form submit event.
-const handleGenerateThemeJsonFormSubmit = (e) => {
-	// Prevent the form from submitting.
-	e.preventDefault();
-
-	// Generate the theme.json file.
-	const themeJsonString = generateThemeJson(e.target);
-
-	// Download the theme.json file.
-	downloadThemeJson(themeJsonString);
-};
-
-// Handle the add color button click event.
-const handleAddColorButtonClick = (e) => {
-	// Prevent the form from submitting.
-	e.preventDefault();
-
-	// Get the color palette container.
-	const colorPaletteContainer = document.getElementById(
-		"color-palette-container"
-	);
-
-	// Get the color palette item count.
-	const colorPaletteItemCount =
-		document.getElementsByClassName("color-palette-item").length;
-
-	if (colorPaletteItemCount === 4) {
-		e.target.remove();
+/**
+ * Append the form value to the theme.json object.
+ * @param {object} themeObject The theme.json object.
+ * @param {string} field The name of the form field.
+ * @param {*} value The value of the form field.
+ * @returns {object} The theme.json object.
+ */
+const appendFormValueToThemeJson = (themeObject, field, value) => {
+	// Parse the color palette values.
+	if (field.includes("color")) {
+		if (field.includes("name")) {
+			themeObject.settings.color.palette.push({
+				slug: slugifyString(value),
+				name: value,
+				color: "",
+			});
+		} else if (field.includes("hex")) {
+			// The fields are in the format color-1-hex, color-2-hex, etc.
+			const colorIndex = field.split("-")[1];
+			themeObject.settings.color.palette[colorIndex - 1].color = value;
+		}
+		return themeObject;
 	}
 
-	// Create the color palette item.
-	const colorPaletteItem = document.createElement("div");
-	colorPaletteItem.classList.add("color-palette-item");
+	// Parse the rest of the values.
+	switch (field) {
+		case "content-size":
+			themeObject.settings.layout.contentSize = value;
+			break;
+		case "wide-size":
+			themeObject.settings.layout.wideSize = value;
+			break;
+		case "appearance-tools":
+			themeObject.settings.appearanceTools = true;
+			break;
+		default:
+			console.log("No match found for field: " + field);
+			break;
+	}
 
-	// Create the color palette item name label.
-	const colorPaletteItemNameLabel = document.createElement("label");
-	colorPaletteItemNameLabel.setAttribute(
-		"for",
-		`color-${colorPaletteItemCount + 1}-name`
-	);
-	colorPaletteItemNameLabel.innerHTML = "Name";
-
-	// Create the color palette item name input.
-	const colorPaletteItemNameInput = document.createElement("input");
-	colorPaletteItemNameInput.setAttribute("type", "text");
-	colorPaletteItemNameInput.setAttribute(
-		"name",
-		`color-${colorPaletteItemCount + 1}-name`
-	);
-	colorPaletteItemNameInput.setAttribute(
-		"id",
-		`color-${colorPaletteItemCount + 1}-name`
-	);
-
-	// Append the color palette item name input to the color palette item.
-	colorPaletteItem.appendChild(colorPaletteItemNameLabel);
-	colorPaletteItem.appendChild(colorPaletteItemNameInput);
-
-	// Create the color palette item hex label.
-	const colorPaletteItemHexLabel = document.createElement("label");
-	colorPaletteItemHexLabel.setAttribute(
-		"for",
-		`color-${colorPaletteItemCount + 1}-hex`
-	);
-	colorPaletteItemHexLabel.innerHTML = "Hex Value";
-
-	// Create the color palette item hex input.
-	const colorPaletteItemHexInput = document.createElement("input");
-	colorPaletteItemHexInput.setAttribute("type", "text");
-	colorPaletteItemHexInput.setAttribute(
-		"name",
-		`color-${colorPaletteItemCount + 1}-hex`
-	);
-	colorPaletteItemHexInput.setAttribute(
-		"id",
-		`color-${colorPaletteItemCount + 1}-hex`
-	);
-
-	// Append the color palette item hex input to the color palette item.
-	colorPaletteItem.appendChild(colorPaletteItemHexLabel);
-	colorPaletteItem.appendChild(colorPaletteItemHexInput);
-
-	// Append the color palette item to the color palette container.
-	colorPaletteContainer.appendChild(colorPaletteItem);
+	return themeObject;
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-	// Get the form element.
-	const generateThemeJsonForm = document.getElementById(
-		"generate-theme-json-form"
-	);
+/**
+ * Parse the form data.
+ * @returns {object} The theme.json object.
+ */
+const addFormDataToThemeJson = (form) => {
+	let jsonContents = {
+		$schema: "https://schemas.wp.org/trunk/theme.json",
+		version: 2,
+		settings: {
+			appearanceTools: false,
+			layout: {},
+			color: {
+				palette: [],
+			},
+		},
+		styles: {},
+	};
 
-	// Get the button element.
-	const addColorButton = document.getElementById("add-color-button");
+	for (const [field, value] of new FormData(form).entries()) {
+		jsonContents = appendFormValueToThemeJson(jsonContents, field, value);
+	}
 
-	// Add the event listener to the button.
-	generateThemeJsonForm.addEventListener(
-		"submit",
-		handleGenerateThemeJsonFormSubmit
-	);
+	return jsonContents;
+};
 
-	// Add the event listener to the button.
-	addColorButton.addEventListener("click", handleAddColorButtonClick);
-});
+/**
+ * Handle the form submit event.
+ * @param {Event} e The submit event.
+ */
+const handleGenerateFormSubmit = (e) => {
+	e.preventDefault();
+
+	const themeJsonContents = addFormDataToThemeJson(e.target);
+	const themeJsonFile = generateJsonFile(themeJsonContents);
+	downloadFile(themeJsonFile, "theme.json");
+};
+
+/**
+ * Create a color palette item.
+ * @param {number} count The number of color palette items.
+ */
+const createColorPaletteItem = (count) => {
+	const paletteItemNameLabel = createDOMElement({
+		type: "label",
+		attributes: {
+			for: `color-${count + 1}-name`,
+		},
+		innerHTML: "Name",
+	});
+
+	const paletteItemNameInput = createDOMElement({
+		type: "input",
+		attributes: {
+			type: "text",
+			name: `color-${count + 1}-name`,
+			id: `color-${count + 1}-name`,
+		},
+	});
+
+	const paletteItemHexLabel = createDOMElement({
+		type: "label",
+		attributes: {
+			for: `color-${count + 1}-hex`,
+		},
+		innerHTML: "Hex Value",
+	});
+
+	const paletteItemHexInput = createDOMElement({
+		type: "input",
+		attributes: {
+			type: "text",
+			name: `color-${count + 1}-hex`,
+			id: `color-${count + 1}-hex`,
+		},
+	});
+
+	const paletteItem = createDOMElement({
+		type: "div",
+		classes: ["color-palette-item"],
+		children: [
+			paletteItemNameLabel,
+			paletteItemNameInput,
+			paletteItemHexLabel,
+			paletteItemHexInput,
+		],
+	});
+
+	return paletteItem;
+};
+
+export { handleGenerateFormSubmit, createColorPaletteItem };

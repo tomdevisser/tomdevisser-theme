@@ -6,7 +6,7 @@
  */
 
 .wp-block-toms-themejson-generator {
-	padding: 2px;
+	padding-block: 2rem;
 
 	.generate-theme-json-form {
 		.colors-fieldset {
@@ -24,6 +24,7 @@
 
 			.button {
 				margin-top: 1rem;
+				padding: 0.5rem 1rem;
 			}
 		}
 	}

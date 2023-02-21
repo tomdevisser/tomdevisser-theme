@@ -1,5 +1,6 @@
 # tomdevisser.blog theme
 
+![](https://github.com/thomasdevisser/tomdevisser/actions/workflows/javascript-tests.yml/badge.svg)
 ![](https://github.com/thomasdevisser/tomdevisser/actions/workflows/build-and-deploy.yml/badge.svg)
 
 This is the theme I'm using for my personal blog. This will also be the

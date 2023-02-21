@@ -24,5 +24,9 @@
   "homepage": "https://github.com/tomdevisser/tomdevisser-theme#readme",
   "devDependencies": {
     "@wordpress/scripts": "^25.4.0"
+  },
+  "dependencies": {
+    "@sentry/browser": "^7.38.0",
+    "@sentry/tracing": "^7.38.0"
   }
 }

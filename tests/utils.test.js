@@ -58,7 +58,7 @@ describe("createDOMElement", () => {
 	});
 
 	test("it should set the correct attributes", () => {
-		expect(element.getAttribute("data-test")).toBe("test");
+		expect(element.getAttribute("data-test")).toBe("tt");
 	});
 
 	test("it should set the correct children", () => {

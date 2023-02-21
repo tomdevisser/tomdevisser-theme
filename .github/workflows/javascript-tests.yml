@@ -1,0 +1,18 @@
+name: JavaScript Tests
+run-name: ${{ github.actor }} is running JavaScript tests
+on:
+  push:
+    branches: [main]
+  
+  workflow_dispatch:
+
+jobs:
+  javascript-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - run: npm ci
+      - run: npm run test

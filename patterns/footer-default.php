@@ -25,7 +25,7 @@
 		printf(
 			/* Translators: The current year. */
 			esc_html__( '&copy; %s Tom de Visser', 'toms' ),
-			date( 'Y' )
+			gmdate( 'Y' )
 		)
 		?>
 		</p>

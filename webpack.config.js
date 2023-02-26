@@ -13,16 +13,6 @@ module.exports = {
 	entry: {
 		"toms-styles": path.resolve(__dirname, "/src/scss", "styles.scss"),
 		"toms-scripts": path.resolve(__dirname, "/src/js", "scripts.js"),
-		"themejson-generator-script": path.resolve(
-			__dirname,
-			"/blocks/themejson-generator",
-			"script.js"
-		),
-		"themejson-generator": path.resolve(
-			__dirname,
-			"/blocks/themejson-generator",
-			"index.js"
-		),
 	},
 	output: {
 		path: path.resolve(__dirname, "build"),
